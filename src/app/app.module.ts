@@ -5,9 +5,13 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
-import { HomepageComponent } from './homepage/homepage.component';
+import { NavigationBarComponent } from './navigation-bar/navigation-bar.component';
 import {AppRoutingModule} from "./app-routing.module";
 import { MovieListComponent } from './movie-list/movie-list.component';
+import { SeriesListComponent } from './series-list/series-list.component';
+import { MovieCreateFormComponent } from './movie-create-form/movie-create-form.component';
+import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -15,14 +19,18 @@ import { MovieListComponent } from './movie-list/movie-list.component';
     LoginComponent,
     SignupComponent,
     PasswordResetComponent,
-    HomepageComponent,
-    MovieListComponent
+    NavigationBarComponent,
+    MovieListComponent,
+    SeriesListComponent,
+    MovieCreateFormComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
+    imports: [
+      HttpClientModule,
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule
 
-  ],
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })

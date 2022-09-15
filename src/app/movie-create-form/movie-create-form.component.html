@@ -1,0 +1,24 @@
+<div class="editContainer">
+  <div class="text">
+    <h2> Add</h2>
+  </div>
+  <div class="all">
+    <div class="all-inputs">
+      <div>
+        <input type="text" placeholder="Title" class="inputs" [(ngModel)]="title">
+      </div>
+      <div>
+        <input type="text" placeholder="Genre" class="inputs" [(ngModel)]="genre">
+      </div>
+      <div>
+        <input type="number" placeholder="Year" class="inputs" [(ngModel)]="year">
+      </div>
+      <div>
+        <input type="file" placeholder="Poster" class="file" (change)="onImageSelected($event)" accept="image/*">
+      </div>
+    </div>
+    <div>
+      <button (click)="createMovie()"> Add </button>
+    </div>
+  </div>
+</div>

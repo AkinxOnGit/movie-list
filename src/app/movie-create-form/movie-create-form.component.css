@@ -1,0 +1,23 @@
+.text{
+  color: white;
+  padding: 5px;
+}
+.editContainer{
+  position: absolute;
+  right: 50%;
+  top: 50%;
+  transform: translate(50%, -50%);
+  width: 750px;
+  height: 450px;
+  background-color: #686666;
+  border-radius: 12px;
+  padding: 20px;
+}
+.inputs{
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.all-inputs{
+
+}

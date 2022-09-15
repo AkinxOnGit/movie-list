@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Sanitizer} from '@angular/core';
 import {Movie} from "../shared/movie-model";
+import {ButtonPath, emitButtonPath} from "../shared/button-path";
+import {MovieService} from "../service/movie.service";
+import {addMovieEmitter} from "../navigation-bar/navigation-bar.component";
+import {DomSanitizer} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-movie-list',
@@ -8,16 +12,30 @@ import {Movie} from "../shared/movie-model";
 })
 export class MovieListComponent implements OnInit {
 
-  movies: Movie[] = [
-   new Movie("Batman", 2015,"https://i.pinimg.com/736x/57/f6/84/57f684b5ee74fcb03e4b270f22d72e1b.jpg", "Superhero"),
-   new Movie("Herr der Ringe", 2003,"https://m.media-amazon.com/images/I/51VKKN0KZEL.jpg", "Science Fiction"),
-   new Movie("Star Wars", 2019,"https://gfx.videobuster.de/archive/v/c6Tg4LfT_5BSIiALD85Y92gcz0lMkawsSUyRjA0JTJGaW1hmSUyRmpwZWclMkbYNWO7NGRjZWPmszZjtP42YjmLY9CoMC5qcGcmcj1opjAw/star-wars-episode-ix-der-aufstieg-skywalkers-blu-ray-cover.jpg", "Science Fiction"),
-   new Movie("Joker", 2019,"https://m.media-amazon.com/images/I/81YdUDaMiWL._SY445_.jpg", "Psychothriller"),
-    ]
+  movies: Movie[] = [];
+  showForm: boolean = false;
 
-  constructor() { }
+  constructor(private movieService: MovieService, private sanitizer: DomSanitizer) {
+    setTimeout(() => {
+      emitButtonPath.emit(ButtonPath.Movie);
+      this.movieFormPopUp();
+    }, -1);
+  }
 
   ngOnInit(): void {
+    this.movieService.getMovies().subscribe(movies => {
+      this.movies = movies
+      movies.map(movie => {
+        let objUrl = 'data:image/png;base64,' + movie.image
+        movie.realImage = this.sanitizer.bypassSecurityTrustUrl(objUrl);
+      })
+      console.log(this.movies)
+    })
+  }
+  movieFormPopUp(){
+    addMovieEmitter.subscribe(v =>{
+      this.showForm = v;
+    })
   }
 
 }

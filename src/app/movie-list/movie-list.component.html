@@ -1,9 +1,11 @@
+<app-navigation-bar></app-navigation-bar>
 <div style="display: flex; margin: 20px">
   <div class="card" *ngFor="let movie of movies" style="padding: 5px; margin-left: 10px; margin-right: 10px">
-      <img src="{{movie.poster}}" style="height: 350px; width: 250px">
+    <img [src]="movie.realImage" style="height: 350px; width: 250px" />
       <div class="container" style="width: fit-content">
-        <h4><b> {{movie.title}}</b></h4>
-        <p>{{movie.year}}, {{movie.genre}}</p>
+        <h4 class="text"><b> {{movie.title}}</b></h4>
+        <p class="text">{{movie.year}}, {{movie.genre}}</p>
     </div>
   </div>
 </div>
+<app-movie-create-form *ngIf="showForm"></app-movie-create-form>

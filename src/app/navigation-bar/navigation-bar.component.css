@@ -1,0 +1,9 @@
+.addBtn{
+  height: 30px;
+  width: 100px;
+  margin-top: 10px;
+  background-color: #1c5482;
+  color: white;
+  border-radius: 8px;
+  border-color: black;
+}
