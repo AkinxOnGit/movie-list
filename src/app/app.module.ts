@@ -10,8 +10,13 @@ import {AppRoutingModule} from "./app-routing.module";
 import { MovieListComponent } from './movie-list/movie-list.component';
 import { SeriesListComponent } from './series-list/series-list.component';
 import { MovieCreateFormComponent } from './movie-create-form/movie-create-form.component';
-import {FormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { MatButtonModule } from '@angular/material/button';
+import {MatIconModule} from "@angular/material/icon";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 @NgModule({
   declarations: [
@@ -23,14 +28,22 @@ import {HttpClientModule} from "@angular/common/http";
     MovieListComponent,
     SeriesListComponent,
     MovieCreateFormComponent
-  ],
-    imports: [
-      HttpClientModule,
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule
 
-    ],
+  ],
+  imports: [
+    HttpClientModule,
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    MatButtonModule,
+    MatIconModule,
+    BrowserAnimationsModule,
+
+  ],
+  exports: [
+    MatButtonModule,
+    MatIconModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

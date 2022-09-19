@@ -1,9 +1,10 @@
-import {Component, OnInit, Sanitizer} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Sanitizer} from '@angular/core';
 import {Movie} from "../shared/movie-model";
 import {ButtonPath, emitButtonPath} from "../shared/button-path";
 import {MovieService} from "../service/movie.service";
 import {addMovieEmitter} from "../navigation-bar/navigation-bar.component";
 import {DomSanitizer} from "@angular/platform-browser";
+
 
 @Component({
   selector: 'app-movie-list',
@@ -32,9 +33,16 @@ export class MovieListComponent implements OnInit {
       console.log(this.movies)
     })
   }
+
   movieFormPopUp(){
     addMovieEmitter.subscribe(v =>{
       this.showForm = v;
+    })
+  }
+
+  onDeleteMovie(id: number){
+    this.movieService.deleteMovie(id).subscribe(_ => {
+      this.movies = this.movies.filter(movie => movie.id != id)
     })
   }
 

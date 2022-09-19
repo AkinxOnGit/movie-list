@@ -6,6 +6,14 @@
         <h4 class="text"><b> {{movie.title}}</b></h4>
         <p class="text">{{movie.year}}, {{movie.genre}}</p>
     </div>
+    <div style="display: flex; justify-content: space-between">
+      <button (click)="onDeleteMovie(movie.id)" mat-raised-button color="primary">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button (click)="onDeleteMovie(movie.id)" mat-raised-button color="primary">
+        <mat-icon>edit</mat-icon>
+      </button>
   </div>
 </div>
-<app-movie-create-form *ngIf="showForm"></app-movie-create-form>
+</div>
+<app-movie-create-form [movieList]="movies" *ngIf="showForm"></app-movie-create-form>

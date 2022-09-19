@@ -27,8 +27,12 @@ export class MovieService {
     return this.httpClient.put<Movie>(this.baseUrl + "/movie/" + id + "/add-image", formData);
   }
 
-  getMovies() {
-    return this.httpClient.get<Movie[]>(this.baseUrl + "/movie/all")
+  getMovies(): Observable<Movie[]> {
+    return this.httpClient.get<Movie[]>(this.baseUrl + "/movie/all");
+  }
+
+  deleteMovie(id: number){
+    return this.httpClient.delete(this.baseUrl + "/movie/" + id);
   }
 
 }

@@ -1,6 +1,7 @@
 package com.example.moviebackend.movie;
 
 import ch.qos.logback.core.pattern.parser.OptionTokenizer;
+import com.example.moviebackend.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,6 @@ public class MovieController {
 
   @PostMapping("/create")
   public Movie createMovie(@RequestBody Movie movie){
-    System.out.println("Hallo Schatiz");
     return movieRepository.save(movie);
   }
 
@@ -40,17 +40,17 @@ public class MovieController {
   }
 
   @GetMapping("/all")
-  public ResponseEntity<List<Movie>> getMovies() {
+  public ResponseEntity<List<Movie>>getMovies() {
     return ResponseEntity.status(HttpStatus.OK).body(movieRepository.findAll());
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<String> deleteMovie(@PathVariable int id) {
+  public ResponseEntity<Response> deleteMovie(@PathVariable int id) {
     Optional<Movie> movie = movieRepository.findById(id);
     if (movie.isPresent()) {
       movieRepository.deleteById(id);
-      return ResponseEntity.status(HttpStatus.OK).body("Deleted movie " + movie.get().getTitle());
-    }else return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Movie not found");
+      return ResponseEntity.status(HttpStatus.OK).body(new Response("Movie deleted: " + movie.get().getTitle()));
+    }else return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new Response("Movie not found"));
   }
 
 }
