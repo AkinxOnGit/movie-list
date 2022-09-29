@@ -1,8 +1,9 @@
-<div class="editContainer">
+<div style="height: 100%; width: 100%; top: 0; left: 0; position: absolute; background-color: transparent" (click)="onClick($event)">
+<div [class]="editContainer" (click)="onClick($event)">
   <div class="text">
     <h2> Add</h2>
   </div>
-  <div class="all">
+  <div class="all" style="position: relative">
     <div class="all-inputs">
       <div>
         <input type="text" placeholder="Title" class="inputs" [(ngModel)]="title">
@@ -13,12 +14,13 @@
       <div>
         <input type="number" placeholder="Year" class="inputs" [(ngModel)]="year">
       </div>
-      <div>
+      <div style="margin-left: 3px; margin-top: 10px">
         <input type="file" placeholder="Poster" class="file" (change)="onImageSelected($event)" accept="image/*">
       </div>
     </div>
-    <div>
-      <button (click)="createMovie()"> Add </button>
-    </div>
   </div>
+  <div style="position: absolute; bottom: 0; margin-bottom: 20px">
+    <button (click)="createMovie()" class="formsAddBtn"> Add </button>
+  </div>
+</div>
 </div>

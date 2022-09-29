@@ -1,11 +1,8 @@
 import {EventEmitter} from "@angular/core";
+import {ShowType} from "./show-type";
 
-export enum ButtonPath {
-  Movie = "Add Movie",
-  Series = "Add Series",
-  Anime = "Add Anime"
-}
-export const emitButtonPath: EventEmitter<ButtonPath> = new EventEmitter<ButtonPath>();
+
+export const emitButtonPath: EventEmitter<ShowType> = new EventEmitter<ShowType>();
 
 
 

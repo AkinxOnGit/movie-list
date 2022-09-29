@@ -9,15 +9,27 @@
   transform: translate(50%, -50%);
   width: 750px;
   height: 450px;
-  background-color: #686666;
+  background: rgb(28,84,130);
+  background: linear-gradient(99deg, rgba(28,84,130,1) 0%, rgba(255,255,255,1) 100%);
   border-radius: 12px;
   padding: 20px;
-}
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;}
+
 .inputs{
-  border-radius: 10px;
+  border-radius: 15px;
   margin-top: 5px;
   margin-bottom: 5px;
+  padding: 1vh;
+  font-size: 15px;
+  width: 30vh;
+  height: 4vh;
 }
-.all-inputs{
 
+.formsAddBtn{
+  width: 85px;
+  height: 30px;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 50px;
 }
+
+

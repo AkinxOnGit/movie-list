@@ -1,6 +1,5 @@
 import {Component, EventEmitter, OnInit} from '@angular/core';
 import {emitButtonPath} from "../shared/button-path";
-import {Movie} from "../shared/movie-model";
 
 @Component({
   selector: 'app-navigation-bar',
@@ -16,11 +15,11 @@ export class NavigationBarComponent implements OnInit {
 
   constructor() {
     emitButtonPath.subscribe((v) => {
-      this.navigationTitle = v;
+      this.navigationTitle = "Add "  + v[0] + v.substring(1, v.length).toLowerCase();
     });
 
   }
-  onPress(){
+   onPress(){
     addMovieEmitter.emit(true);
   }
 

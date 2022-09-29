@@ -1,5 +1,6 @@
-package com.example.moviebackend.movie;
+package com.example.moviebackend.entities;
 
+import com.example.moviebackend.entities.types.ShowType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,10 +9,9 @@ import javax.persistence.*;
 @Entity
 @Data
 @NoArgsConstructor
-@Table(name = "movies")
+@Table(name = "shows")
 
-
-public class Movie {
+public class Show {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
@@ -20,4 +20,5 @@ public class Movie {
   private byte[] image;
   private int year;
   private String genre;
+  private ShowType showType;
 }

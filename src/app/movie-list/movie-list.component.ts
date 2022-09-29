@@ -1,10 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Sanitizer} from '@angular/core';
-import {Movie} from "../shared/movie-model";
-import {ButtonPath, emitButtonPath} from "../shared/button-path";
-import {MovieService} from "../service/movie.service";
+import {Component, OnInit} from '@angular/core';
+import {Show} from "../shared/show-model";
+import {emitButtonPath} from "../shared/button-path";
+import {ShowService} from "../service/show.service";
 import {addMovieEmitter} from "../navigation-bar/navigation-bar.component";
 import {DomSanitizer} from "@angular/platform-browser";
-
+import {ShowType} from "../shared/show-type";
 
 @Component({
   selector: 'app-movie-list',
@@ -13,18 +13,30 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class MovieListComponent implements OnInit {
 
-  movies: Movie[] = [];
+  movies: Show[] = [];
   showForm: boolean = false;
+  showType: ShowType = ShowType.movie;
 
-  constructor(private movieService: MovieService, private sanitizer: DomSanitizer) {
+  constructor(private movieService: ShowService, private sanitizer: DomSanitizer) {
     setTimeout(() => {
-      emitButtonPath.emit(ButtonPath.Movie);
       this.movieFormPopUp();
     }, -1);
   }
 
   ngOnInit(): void {
-    this.movieService.getMovies().subscribe(movies => {
+    switch (window.location.href.split('homepage/')[1]){
+      case 'movies':
+        this.showType = ShowType.movie;
+        break;
+      case 'series':
+        this.showType = ShowType.series;
+        break;
+      case 'anime':
+        this.showType = ShowType.anime;
+        break;
+    }
+    emitButtonPath.emit(this.showType);
+    this.movieService.getShows(this.showType).subscribe(movies => {
       this.movies = movies
       movies.map(movie => {
         let objUrl = 'data:image/png;base64,' + movie.image
@@ -37,13 +49,16 @@ export class MovieListComponent implements OnInit {
   movieFormPopUp(){
     addMovieEmitter.subscribe(v =>{
       this.showForm = v;
+      console.log(v);
     })
   }
 
   onDeleteMovie(id: number){
-    this.movieService.deleteMovie(id).subscribe(_ => {
+    this.movieService.deleteShow(id).subscribe(_ => {
       this.movies = this.movies.filter(movie => movie.id != id)
     })
   }
-
+  onPressEdit(){
+    addMovieEmitter.emit(true);
+  }
 }

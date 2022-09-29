@@ -21,6 +21,6 @@ public class CustomRepositoryRestConfigurer implements RepositoryRestConfigurer 
         // add id to all json entities
         config.exposeIdsFor(entityManager.getMetamodel().getEntities().stream().map(Type::getJavaType).toArray(Class[]::new));
         cors.addMapping("/**")
-                .allowedOrigins(com.example.springboottest.config.CorsConfig.ALLOWED_ORIGINS);
+                .allowedOrigins(com.example.moviebackend.config.CorsConfig.ALLOWED_ORIGINS);
     }
 }

@@ -11,7 +11,7 @@ public class DevCorsConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/movie/**")
+        registry.addMapping("/show/**")
                 .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .exposedHeaders("Authorization");
     }
