@@ -1,3 +1,5 @@
+<app-movie-create-form *ngIf="showPopUp"></app-movie-create-form>
+
 <div style="height: 100%; width: 100%; top: 0; left: 0; position: absolute; background-color: transparent" (click)="onClick($event)">
 <div [class]="editContainer" (click)="onClick($event)">
   <div class="text">

@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {Show} from "../shared/show-model";
 import {emitButtonPath} from "../shared/button-path";
 import {ShowService} from "../service/show.service";
-import {addMovieEmitter} from "../navigation-bar/navigation-bar.component";
 import {DomSanitizer} from "@angular/platform-browser";
 import {ShowType} from "../shared/show-type";
+import {PopupService} from "../service/popup.service";
 
 @Component({
   selector: 'app-movie-list',
@@ -14,12 +14,11 @@ import {ShowType} from "../shared/show-type";
 export class MovieListComponent implements OnInit {
 
   movies: Show[] = [];
-  showForm: boolean = false;
+  showPopUp: boolean = false;
   showType: ShowType = ShowType.movie;
 
-  constructor(private movieService: ShowService, private sanitizer: DomSanitizer) {
+  constructor(private movieService: ShowService, private sanitizer: DomSanitizer, private popupService: PopupService) {
     setTimeout(() => {
-      this.movieFormPopUp();
     }, -1);
   }
 
@@ -44,21 +43,15 @@ export class MovieListComponent implements OnInit {
       })
       console.log(this.movies)
     })
-  }
 
-  movieFormPopUp(){
-    addMovieEmitter.subscribe(v =>{
-      this.showForm = v;
-      console.log(v);
-    })
+    this.popupService.getPopupVisibility().subscribe(value => {
+      this.showPopUp = value;
+    });
   }
 
   onDeleteMovie(id: number){
     this.movieService.deleteShow(id).subscribe(_ => {
       this.movies = this.movies.filter(movie => movie.id != id)
     })
-  }
-  onPressEdit(){
-    addMovieEmitter.emit(true);
   }
 }

@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {addMovieEmitter} from "../navigation-bar/navigation-bar.component";
 import {ShowService} from "../service/show.service";
 import {Show} from "../shared/show-model";
 import {DomSanitizer} from "@angular/platform-browser";
 import {ShowType} from "../shared/show-type";
+import {PopupService} from "../service/popup.service";
 
 @Component({
   selector: 'app-movie-create-form',
@@ -18,10 +18,10 @@ export class MovieCreateFormComponent implements OnInit {
   year: number = 2000;
   genre: string = "";
   image: File | undefined;
-  popUpIsOpen: boolean = true;
   editContainer: string = 'editContainer';
+  showPopUp:boolean = false;
 
-  constructor(private showService: ShowService, private sanitizer: DomSanitizer) {
+  constructor(private showService: ShowService, private sanitizer: DomSanitizer, private popupService: PopupService) {
   }
 
   ngOnInit(): void {
@@ -36,7 +36,8 @@ export class MovieCreateFormComponent implements OnInit {
         this.showType = ShowType.anime;
         break;
     }
-    this.popUpIsOpen = true;
+
+
   }
 
   onImageSelected(event: Event) {
@@ -53,15 +54,13 @@ export class MovieCreateFormComponent implements OnInit {
             let objUrl = 'data:image/png;base64,' + movie2.image
             movie2.realImage = this.sanitizer.bypassSecurityTrustUrl(objUrl)
             this.movieList.push(movie2)
-            addMovieEmitter.emit(false);
-          })
+                })
         })
     }
   }
   onClick(event: Event){
     const isPopUp: boolean = event.composedPath()[0] === document.getElementsByClassName(this.editContainer)[0];
     if(!isPopUp) {
-      addMovieEmitter.emit(false);
     }
 
   }

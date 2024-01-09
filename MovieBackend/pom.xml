@@ -26,11 +26,6 @@
       <version>2.5.0</version>
     </dependency>
     <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-jdbc</artifactId>
     </dependency>
@@ -45,7 +40,8 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <optional>true</optional>
+      <version>1.18.30</version>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -67,10 +63,6 @@
       <groupId>org.json</groupId>
       <artifactId>json</artifactId>
       <version>20220320</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-security</artifactId>
     </dependency>
   </dependencies>
 
@@ -94,25 +86,6 @@
             </env>
           </image>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.springframework.experimental</groupId>
-        <artifactId>spring-aot-maven-plugin</artifactId>
-        <version>${spring-native.version}</version>
-        <executions>
-          <execution>
-            <id>test-generate</id>
-            <goals>
-              <goal>test-generate</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>generate</id>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>

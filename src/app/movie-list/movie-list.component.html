@@ -10,10 +10,10 @@
       <button (click)="onDeleteMovie(movie.id)" mat-raised-button color="primary">
         <mat-icon>delete</mat-icon>
       </button>
-      <button (click)="onPressEdit()" mat-raised-button color="primary">
+      <button mat-raised-button color="primary">
         <mat-icon>edit</mat-icon>
       </button>
   </div>
 </div>
 </div>
-<app-movie-create-form [movieList]="movies" *ngIf="showForm"></app-movie-create-form>
+<app-movie-create-form [movieList]="movies" *ngIf="showPopUp"></app-movie-create-form>
