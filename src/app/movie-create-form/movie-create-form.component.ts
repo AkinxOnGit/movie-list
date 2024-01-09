@@ -19,9 +19,7 @@ export class MovieCreateFormComponent implements OnInit {
   genre: string = "";
   image: File | undefined;
   editContainer: string = 'editContainer';
-  showPopUp:boolean = false;
-
-  constructor(private showService: ShowService, private sanitizer: DomSanitizer, private popupService: PopupService) {
+  constructor(private showService: ShowService, private sanitizer: DomSanitizer) {
   }
 
   ngOnInit(): void {
